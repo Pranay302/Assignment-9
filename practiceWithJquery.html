@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Practice with jQuery Events</title>
+
+</head>
+<body>
+	<button id="button1">Button .click() </button>
+	<button id="button2">Button2 .bind()</button>
+	<button id="button3">Button3 .on()</button>
+    <button class="button4">Button -- 1</button>
+	<button class="button4">Button -- 2</button> <br>
+    <div id="divQ20" style="border:solid;float:left"></div>
+    <div id="divQ21" style="border:solid;float:left"></div><br>
+	<span>Mouse event for second div: </span><br>
+    <a href="http://modulemedia.com">Link for ModuleMedia homepage</a><br>
+	<div id="dimentionCheck"></div>
+    TextBox that magically changes background: <input type="text" name="background" id="background">
+    <br>
+	<form>
+		Name: <input type="text" name="name" id="name">
+		Email: <input type="email" name="email" id="email">
+		<button type="submit">Submit</button>
+	</form>
+
+	<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+	<script>
+	    $("#button1").click(function () {
+			alert("Button using .click() was clicked.");
+		})
+		
+		$("#button2").bind("click", function () {
+			alert("Button using .bind() was clicked.");
+		})
+		
+		$("#button3").on("click", function () {
+			alert("Button using .on() was clicked.");
+		})
+		
+		$(".button4").on("click", function () {
+			alert("Button 4 or 5 was clicked.");
+		})
+		//div1 for question 20
+		$("#divQ20").height("400px");
+		$("#divQ20").width("400px");
+        
+		$("#divQ20").on("mouseenter", function () {
+			alert("Mouse just entered");
+		})
+		$("#divQ20").on("mouseleave", function () {
+			alert("Mouse just left");
+		})
+		$("#divQ20").on("click", function () {
+			alert("Mouse was clicked");
+		})
+		//div2 for question 21
+		$("#divQ21").height("400px");
+		$("#divQ21").width("400px");
+		$("#divQ21").on("mouseenter", function () {
+			$("span").text("Mouse just entered");
+		})
+		$("#divQ21").on("mouseleave", function () {
+			$("span").text("Mouse just left");
+		})
+		$("#divQ21").on("click", function () {
+			$("span").text("Mouse was clicked");
+		})
+		
+		$("a").click(function (e) {
+			e.preventDefault(); //prevent the link from redirection
+			$("a").css("color", "red");
+			alert("Node is: " + e.target.nodeName);
+		})
+
+        function writeDimention(){
+			$("#dimentionCheck").html("Width is : " + $(window).width() + " Height is : " + $(window).height());		
+		}
+		$(window).resize(writeDimention); //call the function when the window is resized.
+		
+		$("#background").on("focus", function () {
+			$("#background").css("background-color", "grey");
+		})
+		$("#background").on("blur", function () {
+			$("#background").css("background-color", "white");
+		})
+		
+	</script>
+</body>
+</html>
